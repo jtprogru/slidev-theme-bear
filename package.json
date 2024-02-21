@@ -23,7 +23,7 @@
     "prism-theme-vars": "^0.2.4"
   },
   "devDependencies": {
-    "@slidev/cli": "^0.47.1"
+    "@slidev/cli": "^0.48.0-beta.5"
   },
   "//": "Learn more: https://sli.dev/themes/write-a-theme.html",
   "slidev": {
