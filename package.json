@@ -1,15 +1,19 @@
 {
   "name": "slidev-theme-bear",
   "version": "0.0.1",
-  "description": "Simple theme for Slidev created with Bear on server",
+  "description": "«Мишка на сервере» — тёплая инженерная тема для Slidev: холодная нейтральная база, один янтарный акцент, gruvbox-код, PT Sans + JetBrains Mono, доступность ≥ AA",
   "type": "module",
   "keywords": [
     "slidev-theme",
-    "slidev"
+    "slidev",
+    "gruvbox",
+    "bear",
+    "sre",
+    "engineering"
   ],
   "engines": {
     "node": ">=18.0.0",
-    "slidev": ">=0.19.3"
+    "slidev": ">=0.47.0"
   },
   "scripts": {
     "build": "slidev build example.md",
@@ -18,22 +22,31 @@
     "screenshot": "slidev export example.md --format png"
   },
   "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.0.0",
+    "@fontsource/pt-sans": "^5.0.0",
     "@slidev/types": "^0.47.1",
-    "codemirror-theme-vars": "^0.1.2",
-    "prism-theme-vars": "^0.2.4"
+    "tm-themes": "^1.12.2"
   },
   "devDependencies": {
-    "@slidev/cli": "^0.47.1"
+    "@slidev/cli": "^0.47.1",
+    "playwright-chromium": "^1.61.1"
   },
   "//": "Learn more: https://sli.dev/themes/write-a-theme.html",
   "slidev": {
     "colorSchema": "both",
-    "highlighter": "all",
+    "highlighter": "shiki",
     "defaults": {
       "fonts": {
-        "sans": "Roboto",
-        "mono": "Fira Code"
+        "sans": "PT Sans",
+        "mono": "JetBrains Mono",
+        "weights": "400,700",
+        "italic": true,
+        "provider": "none",
+        "local": "PT Sans, JetBrains Mono"
       }
+    },
+    "themeConfig": {
+      "primary": "#fb923c"
     }
   }
 }

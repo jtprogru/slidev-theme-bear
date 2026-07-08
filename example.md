@@ -1,80 +1,216 @@
 ---
 theme: ./
+title: Мишка на сервере — тема Slidev
+info: |
+  Демо-дек темы «Мишка на сервере».
+  Технический скелет + тёплая подача.
+class: text-center
+transition: slide-left
+mdc: true
+layout: cover
+mascot: true
 ---
 
-# Slidev Theme Starter
+# Мишка на сервере
 
-Presentation slides for developers
+Тёплая инженерная тема для Slidev
 
 <div class="pt-12">
-  <span @click="next" class="px-2 p-1 rounded cursor-pointer hover:bg-white hover:bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
+  <span @click="$slidev.nav.next" class="px-2 p-1 rounded cursor-pointer" hover="bg-accent-400 bg-opacity-10">
+    Пробел — дальше <carbon:arrow-right class="inline"/>
   </span>
 </div>
 
 ---
+layout: intro
+---
 
-# What is Slidev?
+# Зачем эта тема
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+Холодная инженерная база, один тёплый акцент, много воздуха.
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
+Одинаково хорошо вытягивает **howto с десятью code-блоками** и **эссе про надёжность в диалоге с бизнесом**.
 
-<br>
-<br>
+---
+layout: section
+mascot: true
+---
 
-Read more about [Why Slidev?](https://sli.dev/guide/why)
+# Раздел: с чего начать
 
 ---
 
-# Navigation
+# Список тезисов
 
-Hover on the bottom-left corner to see the navigation's controls panel
+Дефолтный лейаут — рабочая лошадка для контента.
 
-## Keyboard Shortcuts
+- 🧊 **Холодная база** — off-white на свету, сине-графит в темноте
+- 🔶 **Один акцент** — янтарный `#fb923c`, разложен в шкалу под роли
+- 🔡 **PT Sans + JetBrains Mono** — self-hosted, кириллица, офлайн
+- 🎨 **gruvbox** — подсветка кода в цвет бренда
+- ♿ **Доступность** — контрасты ≥ AA
 
-|     |     |
-| --- | --- |
-| <kbd>space</kbd> / <kbd>tab</kbd> / <kbd>right</kbd> | next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
+> Здоровая доза mono уже есть: блоки кода, inline-код, `kbd`. Прозу — humanist sans.
 
 ---
-layout: image-right
-image: 'https://source.unsplash.com/collection/94734566/1920x1080'
+layout: two-cols
 ---
 
-# Code
+# Две колонки
 
-Use code snippets and get the highlighting directly!
+Слева — мысль, справа — код. Ядро Slidev даёт `two-cols` из коробки, тема его перекрашивает.
+
+::right::
 
 ```ts
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
+interface SLO {
+  target: number      // 99.9
+  window: '30d'
 }
 
-function updateUser(id: number, update: Partial<User>) {
-  const user = getUser(id)
-  const newUser = { ...user, ...update }
-  saveUser(id, newUser)
+function burnRate(errors: number, budget: number) {
+  return errors / budget
 }
 ```
 
 ---
-layout: center
-class: "text-center"
+layout: code
 ---
 
-# Learn More
+# Код крупным планом
 
-[Documentations](https://sli.dev) / [GitHub Repo](https://github.com/slidevjs/slidev)
+```go
+package main
+
+import "fmt"
+
+// Лейаут `code` — для howto, где кода много и он главный.
+func main() {
+    services := []string{"api", "db", "cache"}
+    for i, s := range services {
+        fmt.Printf("%d: %s up\n", i, s)
+    }
+}
+```
+
+---
+layout: image-right
+image: https://picsum.photos/seed/bear-right/1920/1080
+---
+
+# Картинка справа
+
+Текст слева, изображение справа. Проп `image:` во frontmatter.
+
+```bash
+kubectl get pods -A | grep -v Running
+```
+
+---
+layout: image-left
+image: https://picsum.photos/seed/bear-left/1920/1080
+---
+
+# Картинка слева
+
+Зеркальный лейаут: изображение слева, текст справа.
+
+---
+layout: image
+image: https://picsum.photos/seed/bear-full/1920/1080
+dim: true
+---
+
+# Картинка во весь экран
+
+Full-bleed с затемнением (`dim: true`) для читаемости текста поверх.
+
+---
+
+# Callouts — информация
+
+Тихая семантика: тип различается цветом, иконкой и заголовком.
+
+<Callout type="note">Нейтральная информация — контекст, ссылка, уточнение.</Callout>
+
+<Callout type="tip">Совет или лучшая практика: настрой `font-display: swap`.</Callout>
+
+<Callout type="important" title="Не пропусти">Важно не пропустить: цвет — не единственный носитель смысла.</Callout>
+
+---
+
+# Callouts — внимание
+
+Уровень тревоги растёт от «осторожно» до «сломаешь прод».
+
+<Callout type="warn">Осторожно: `provider: none` отключает автозагрузку шрифтов с Google.</Callout>
+
+<Callout type="danger">Так можно сломать прод: не мержить обе темы в один media-query.</Callout>
+
+---
+
+# Типографика и элементы
+
+## Заголовок второго уровня
+
+Абзац тела на PT Sans. Ссылка ведёт на [sli.dev](https://sli.dev) — контраст ≥ AA в обеих темах.
+
+| Клавиша | Действие |
+| --- | --- |
+| <kbd>space</kbd> / <kbd>→</kbd> | следующий шаг или слайд |
+| <kbd>←</kbd> | назад |
+| <kbd>f</kbd> | полноэкранный режим |
+
+---
+layout: fact
+---
+
+# 99.95%
+
+доступность за квартал
+
+---
+layout: big-metric
+---
+
+# 3 ✕ 9
+
+бюджет ошибок на месяц ≈ 43 минуты
+
+---
+layout: statement
+---
+
+# Надёжность — это фича, а не отдел
+
+---
+layout: quote
+---
+
+> Первым SRE был Флинн из «Трона»: он жил внутри системы и чинил её изнутри.
+
+*— из блога «Мишка на сервере»*
+
+---
+layout: 3-images
+imageLeft: https://picsum.photos/seed/bear-a/900/1200
+imageTopRight: https://picsum.photos/seed/bear-b/1200/700
+imageBottomRight: https://picsum.photos/seed/bear-c/1200/700
+---
+
+---
+layout: outro
+---
+
+# Итоги
+
+- Тема переносит бренд блога в слайды: цвет, шрифты, gruvbox, tone of voice
+- Полный набор лейаутов — готов к конференции
+- Callouts, футер со знаком, маскот в тёплых зонах
+
+[jtprog.ru](https://jtprog.ru) · [github.com/jtprogru](https://github.com/jtprogru)
+
+---
+layout: questions
+mascot: true
+---

@@ -1,5 +1,13 @@
+/*
+ * Типографика и ритм темы «Мишка на сервере» (BRANDING §3).
+ * Технический скелет + тёплая подача: много воздуха, щедрые межблочные отступы,
+ * воздух перед заголовком > воздуха после (заголовок «принадлежит» тексту под ним).
+ */
+
 .slidev-layout {
-  @apply px-14 py-10 text-[1.1rem];
+  @apply px-16 py-12 text-[1.05rem] leading-relaxed;
+  color: var(--fg);
+  background: var(--bg);
 
   h1, h2, h3, h4, p, div {
     @apply select-none;
@@ -9,34 +17,45 @@
     @apply select-text;
   }
 
+  /* ── Заголовки ────────────────────────────────────────────────────── */
   h1 {
-    @apply text-4xl mb-4 font-700 -ml-[0.05em];
+    @apply text-4xl mb-4 font-bold -ml-[0.03em] tracking-tight;
+    color: var(--fg);
   }
   h1 + h2 {
-    @apply -mt-4;
+    @apply -mt-3;
   }
 
   h2 {
-    @apply text-2xl font-700;
+    @apply text-2xl font-bold;
+    color: var(--fg);
   }
 
   h3 {
-    @apply text-sm pt-2 uppercase tracking-widest font-500 -ml-[0.05em];
+    @apply text-sm pt-2 uppercase tracking-widest font-medium -ml-[0.03em];
+    color: var(--fg-muted);
+  }
+  h3.opacity-100 {
+    color: var(--accent-600);
   }
 
-  h3:not(.opacity-100) {
-    @apply opacity-40;
+  h4 {
+    @apply text-base font-bold;
+    color: var(--fg);
   }
 
+  /* ── Абзацы и списки ──────────────────────────────────────────────── */
   p {
-    @apply my-4 leading-6;
+    @apply my-4 leading-relaxed;
   }
 
   h1 + p {
     @apply -mt-2 mb-4;
+    color: var(--fg-muted);
   }
 
-  p + h2, ul + h2, table + h2 {
+  /* воздух перед заголовком больше, чем после (BRANDING §3) */
+  p + h2, ul + h2, ol + h2, table + h2, pre + h2 {
     @apply mt-10;
   }
 
@@ -44,84 +63,129 @@
     list-style: disc;
     @apply mb-4;
   }
+  ol {
+    list-style: decimal;
+    @apply mb-4;
+  }
 
   li {
-    @apply ml-1.1em pl-0.2em leading-1.8em;
+    @apply ml-[1.1em] pl-[0.2em] leading-loose;
+  }
+  li::marker {
+    color: var(--accent-400);
   }
 
+  /* ── Цитата ───────────────────────────────────────────────────────── */
   blockquote {
-    @apply text-sm px-2 py-1 bg-$prism-background border-$slidev-theme-primary border-l rounded;
+    @apply text-sm px-3 py-2 rounded;
+    background: var(--bg-elev);
+    border-left: 3px solid var(--accent-400);
   }
-
   blockquote > * {
     @apply my-0;
   }
 
+  /* ── Таблицы ──────────────────────────────────────────────────────── */
   table {
     @apply w-full;
   }
-
   tr {
-    @apply border-b border-gray-400 border-opacity-20;
+    border-bottom: 1px solid var(--border);
   }
-
   th {
-    @apply text-left font-400;
+    @apply text-left font-normal;
+    color: var(--fg-muted);
   }
-
-  a {
-    @apply border-current border-b border-dashed hover:(text-$slidev-theme-primary border-solid);
-  }
-
   td, th {
     @apply p-2 py-3;
   }
 
+  /* ── Ссылки: контраст ≥ AA в обеих темах (BRANDING §2/§8) ──────────── */
+  a {
+    color: var(--accent-700);
+    @apply border-current border-b border-dashed;
+    transition: border-color .15s ease;
+  }
+  a:hover {
+    @apply border-solid;
+  }
+
   b, strong {
-    @apply font-600;
+    @apply font-bold;
   }
 
   kbd {
-    @apply border border-gray-400 border-b-2 border-opacity-20 rounded;
-    @apply bg-gray-400 bg-opacity-5 py-0.5 px-1 text-sm font-mono;
+    @apply rounded py-0.5 px-1 text-sm font-mono;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
   }
 }
 
-.slidev-layout.intro-image,
-.slidev-layout.intro {
+html.dark .slidev-layout a {
+  color: var(--accent-300);
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * Крупноформатные лейауты (обложка, разделы, факты) — тёплая подача.
+ * ──────────────────────────────────────────────────────────────────────── */
+
+.slidev-layout.cover,
+.slidev-layout.intro,
+.slidev-layout.intro-image {
   @apply h-full grid;
 
   h1 {
-    @apply text-6xl font-700 leading-20;
+    @apply text-6xl font-bold leading-tight;
   }
-
   h1 + p {
-    @apply font-700 -mt-4 text-2xl;
+    @apply font-bold -mt-3 text-2xl;
+    color: var(--fg-muted);
   }
 }
-.slidev-layout.fact {
+
+.slidev-layout.fact,
+.slidev-layout.big-metric {
   @apply text-center;
   h1 {
-    @apply text-8xl font-700;
+    @apply text-8xl font-bold;
+    color: var(--accent-600);
   }
   h1 + p {
-    @apply font-700 text-2xl;
+    @apply font-bold text-2xl;
+    color: var(--fg-muted);
   }
 }
+
 .slidev-layout.statement {
   @apply text-center;
-
   h1 {
-    @apply text-6xl font-700;
+    @apply text-6xl font-bold leading-tight;
   }
 }
+
 .slidev-layout.quote {
   h1 + p {
     @apply mt-6 ml-6;
   }
+  blockquote {
+    @apply text-2xl leading-snug px-6 py-4;
+  }
 }
+
 .slidev-layout.section {
   h1 {
-    @apply text-6xl font-500 leading-20;
+    @apply text-6xl font-bold leading-tight;
+  }
+  h1::after {
+    content: "";
+    @apply block w-16 h-1 mt-5 rounded-full;
+    background: var(--accent-400);
+  }
+}
+
+.slidev-layout.outro {
+  h1 {
+    @apply text-5xl font-bold leading-tight;
   }
 }

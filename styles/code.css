@@ -1,0 +1,41 @@
+/*
+ * Оформление кода темы «Мишка на сервере» (BRANDING §4).
+ * Подсветку синтаксиса даёт gruvbox через setup/shiki.ts — здесь только
+ * «оправа»: подложка, скругления, отступы, inline-код, kbd, copy-кнопка.
+ * Тёплый акцент уместен на hover copy-кнопки и рамке, но НЕ заливает код целиком.
+ */
+
+.slidev-layout {
+  /* ── Блоки кода ─────────────────────────────────────────────────────── */
+  pre.slidev-code,
+  .slidev-code {
+    @apply rounded-lg px-4 py-3 text-[0.85em] leading-relaxed;
+    border: 1px solid var(--border);
+  }
+
+  /* ── Inline-код ─────────────────────────────────────────────────────── */
+  :not(pre) > code {
+    @apply rounded px-1.5 py-0.5 text-[0.85em] font-mono;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--accent-700);
+  }
+}
+
+html.dark .slidev-layout :not(pre) > code {
+  color: var(--accent-300);
+}
+
+/* ── Код-центричный лейаут: крупнее блоки, больше воздуха ──────────────── */
+.slidev-layout.code {
+  pre.slidev-code,
+  .slidev-code {
+    @apply text-[1.05em] leading-relaxed px-6 py-5;
+  }
+}
+
+/* ── Copy-кнопка: тёплый акцент только на hover ───────────────────────── */
+.slidev-code-wrapper:hover .slidev-code-copy,
+.slidev-code-wrapper .slidev-code-copy:hover {
+  color: var(--accent-400);
+}
