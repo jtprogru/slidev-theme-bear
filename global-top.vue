@@ -8,7 +8,10 @@ import { injectionSlidevContext } from '@slidev/client/constants.ts'
 //
 // Скрываем на «тёплых»/титульных лейаутах — там работают маскот и крупный
 // текст, а знак в шапке не нужен (BRANDING §1: маскот ≠ знак).
-const $slidev = inject(injectionSlidevContext)
+// `$slidev` авто-инъектится Slidev в каждый <script setup> глобально, поэтому
+// локальную переменную нельзя называть `$slidev` (в Slidev 52 это ломает сборку:
+// "Identifier '$slidev' has already been declared"). Берём контекст в `slidev`.
+const slidev = inject(injectionSlidevContext)
 
 const hiddenOn = new Set([
   'cover', 'intro', 'intro-image', 'intro-image-right',
@@ -16,8 +19,8 @@ const hiddenOn = new Set([
   'questions', 'outro', 'end', 'full',
 ])
 
-const hidden = computed(() => hiddenOn.has($slidev?.nav.currentLayout as string))
-const title = computed(() => ($slidev?.configs as any)?.title ?? '')
+const hidden = computed(() => hiddenOn.has(slidev?.nav.currentLayout as string))
+const title = computed(() => (slidev?.configs as any)?.title ?? '')
 </script>
 
 <template>
