@@ -25,12 +25,15 @@
     "@fontsource/jetbrains-mono": "^5.0.0",
     "@fontsource/pt-sans": "^5.0.0",
     "@iconify-json/carbon": "^1.2.24",
-    "@slidev/types": "^0.47.1",
+    "@slidev/types": "^52.18.0",
     "tm-themes": "^1.12.2"
   },
   "devDependencies": {
-    "@slidev/cli": "^0.47.1",
+    "@slidev/cli": "^52.18.0",
     "playwright-chromium": "^1.61.1"
+  },
+  "overrides": {
+    "dompurify": "^3.4.12"
   },
   "//": "Learn more: https://sli.dev/themes/write-a-theme.html",
   "slidev": {
