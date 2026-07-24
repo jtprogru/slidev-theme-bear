@@ -1,8 +1,8 @@
 # slidev-theme-bear
 
-[![NPM version](https://img.shields.io/npm/v/slidev-theme-bear?color=fb923c&label=)](https://www.npmjs.com/package/slidev-theme-bear)
+[![NPM version](https://img.shields.io/npm/v/slidev-theme-bear?color=209fb5&label=)](https://www.npmjs.com/package/slidev-theme-bear)
 
-Тема **«Мишка на сервере»** для [Slidev](https://github.com/slidevjs/slidev): технический скелет + тёплая подача. Холодная нейтральная база, один янтарный акцент, gruvbox-подсветка кода, PT Sans + JetBrains Mono (self-hosted, кириллица), доступность ≥ AA. Перенос [дизайн-кода блога jtprog.ru](https://jtprog.ru) в формат слайдов.
+Тема **«Мишка на сервере»** для [Slidev](https://github.com/slidevjs/slidev): технический скелет + тёплая подача. Холодная приглушённая палитра catppuccin (Latte/Macchiato), один акцент Sapphire, catppuccin-подсветка кода, PT Sans + JetBrains Mono (self-hosted, кириллица), доступность ≥ AA. Теплота бренда живёт в маскоте и голосе, а не в цвете. Перенос [дизайн-кода блога jtprog.ru](https://jtprog.ru) в формат слайдов.
 
 ## Установка
 
@@ -46,17 +46,17 @@ Slidev предложит установить тему автоматическ
 
 ## Цвет
 
-Один тёплый акцент на холодно-нейтральной базе. Токены объявлены в `styles/vars.css` (свет/тьма), проброшены в UnoCSS через `uno.config.ts` (`bg-elev`, `text-ink`, `text-muted`, `border-hair`, `text-accent-700`, `text-link` …).
+Один холодный акцент Sapphire на приглушённой базе catppuccin (Latte на свету, Macchiato в темноте). Токены объявлены в `styles/vars.css` (свет/тьма), проброшены в UnoCSS через `uno.config.ts` (`bg-elev`, `text-ink`, `text-muted`, `border-hair`, `text-accent-700`, `text-link` …).
 
 | Токен | Роль |
 | --- | --- |
-| `--accent-300/400/600/700` | Акцентная шкала: `400` — декор, `700`/`300` — текст ссылок (AA) |
-| `--bg` / `--bg-elev` | Фон страницы / карточки и код |
+| `--accent-300/400/600/700` | Акцентная шкала Sapphire: `400` — декор, `700`/`300` — текст ссылок (AA) |
+| `--bg` / `--bg-elev` | Фон страницы (crust) / карточки и код (base) |
 | `--fg` / `--fg-muted` | Текст / мета |
 | `--border` | Разделители |
-| `--c-note/tip/important/warn/danger` | Семантика callouts |
+| `--c-note/tip/important/warn/danger` | Семантика callouts (Lavender/Green/Mauve/Peach/Red) |
 
-Переопределить акцент можно через `themeConfig` в headmatter: `themeConfig: { primary: '#fb923c' }`.
+Переопределить акцент можно через `themeConfig` в headmatter: `themeConfig: { primary: '#209fb5' }`.
 
 ## Шрифты
 
@@ -64,7 +64,7 @@ Self-hosted (офлайн-показ, OFL, кириллица): **PT Sans** (т�
 
 ## Код
 
-Подсветка — **gruvbox** (`gruvbox-light-medium` / `gruvbox-dark-medium`) через `setup/shiki.ts`. Совпадает по температуре с брендом и с рабочим окружением (ghostty + neovim).
+Подсветка — **catppuccin** (`catppuccin-latte` / `catppuccin-macchiato`) через `setup/shiki.ts`. Построена ровно на тех же тонах, что и UI: блок кода и интерфейс — одна система, а не два соседа.
 
 ## Замена бренд-ассетов
 

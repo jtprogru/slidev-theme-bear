@@ -1,22 +1,23 @@
 import { defineShikiSetup } from '@slidev/types'
-import gruvboxLight from 'tm-themes/themes/gruvbox-light-medium.json'
-import gruvboxDark from 'tm-themes/themes/gruvbox-dark-medium.json'
+import catppuccinLatte from 'tm-themes/themes/catppuccin-latte.json'
+import catppuccinMacchiato from 'tm-themes/themes/catppuccin-macchiato.json'
 
 /**
- * Подсветка кода темы «Мишка на сервере».
+ * Подсветка кода темы «Мишка на сервере» (BRANDING §4, версия 0.2).
  *
- * gruvbox совпадает по температуре с брендом (тёплый кремовый на свету,
- * тёплый тёмно-коричневый в темноте) и с рабочим окружением автора
- * (ghostty + neovim на gruvbox) — см. BRANDING §4.
+ * catppuccin совпадает по температуре с холодным брендом и построен ровно
+ * на тех же тонах, что и UI (Latte/Macchiato) — блок кода и интерфейс
+ * становятся одной системой. Фон кода (base) выровнен с --bg-elev (см. vars.css),
+ * чтобы блок не читался случайным сбоем оттенка.
  *
- * Тема не входит в bundled-набор Shiki у Slidev 0.47, поэтому подгружаем
- * gruvbox как TextMate-тему из пакета `tm-themes` (офлайн, без сети).
+ * Темы не входят в bundled-набор Shiki у Slidev 0.47, поэтому подгружаем их
+ * как TextMate-темы из пакета `tm-themes` (офлайн, без сети).
  */
 export default defineShikiSetup(() => {
   return {
     themes: {
-      light: gruvboxLight as any,
-      dark: gruvboxDark as any,
+      light: catppuccinLatte as any,
+      dark: catppuccinMacchiato as any,
     },
   }
 })

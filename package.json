@@ -1,12 +1,12 @@
 {
   "name": "slidev-theme-bear",
   "version": "0.0.1",
-  "description": "«Мишка на сервере» — тёплая инженерная тема для Slidev: холодная нейтральная база, один янтарный акцент, gruvbox-код, PT Sans + JetBrains Mono, доступность ≥ AA",
+  "description": "«Мишка на сервере» — инженерная тема для Slidev: холодная приглушённая палитра catppuccin, один акцент Sapphire, catppuccin-код, PT Sans + JetBrains Mono, доступность ≥ AA",
   "type": "module",
   "keywords": [
     "slidev-theme",
     "slidev",
-    "gruvbox",
+    "catppuccin",
     "bear",
     "sre",
     "engineering"
@@ -50,7 +50,7 @@
       }
     },
     "themeConfig": {
-      "primary": "#fb923c"
+      "primary": "#209fb5"
     }
   }
 }

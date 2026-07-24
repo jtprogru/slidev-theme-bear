@@ -1,8 +1,8 @@
 /*
- * Оформление кода темы «Мишка на сервере» (BRANDING §4).
- * Подсветку синтаксиса даёт gruvbox через setup/shiki.ts — здесь только
+ * Оформление кода темы «Мишка на сервере» (BRANDING §4, версия 0.2).
+ * Подсветку синтаксиса даёт catppuccin через setup/shiki.ts — здесь только
  * «оправа»: подложка, скругления, отступы, inline-код, kbd, copy-кнопка.
- * Тёплый акцент уместен на hover copy-кнопки и рамке, но НЕ заливает код целиком.
+ * Акцент Sapphire уместен на hover copy-кнопки и рамке, но НЕ заливает код целиком.
  */
 
 .slidev-layout {
@@ -34,7 +34,7 @@ html.dark .slidev-layout :not(pre) > code {
   }
 }
 
-/* ── Copy-кнопка: тёплый акцент только на hover ───────────────────────── */
+/* ── Copy-кнопка: акцент Sapphire только на hover ─────────────────────── */
 .slidev-code-wrapper:hover .slidev-code-copy,
 .slidev-code-wrapper .slidev-code-copy:hover {
   color: var(--accent-400);

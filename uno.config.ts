@@ -12,7 +12,7 @@ import { defineConfig } from 'unocss'
 export default defineConfig({
   theme: {
     colors: {
-      // тёплый янтарный акцент — одна шкала на всю тему (BRANDING §2)
+      // холодный акцент Sapphire — одна шкала на всю тему (BRANDING §2, 0.2)
       accent: {
         300: 'var(--accent-300)',
         400: 'var(--accent-400)',
@@ -21,11 +21,11 @@ export default defineConfig({
         DEFAULT: 'var(--accent-400)',
       },
       // холодно-нейтральная база
-      paper: 'var(--bg)',        // фон страницы
-      elev: 'var(--bg-elev)',    // карточки, подложки, код
-      ink: 'var(--fg)',          // основной текст
-      muted: 'var(--fg-muted)',  // мета, подписи, номера
-      hair: 'var(--border)',     // разделители, рамки
+      paper: 'var(--bg)', // фон страницы
+      elev: 'var(--bg-elev)', // карточки, подложки, код
+      ink: 'var(--fg)', // основной текст
+      muted: 'var(--fg-muted)', // мета, подписи, номера
+      hair: 'var(--border)', // разделители, рамки
       // семантика callouts
       note: 'var(--c-note)',
       tip: 'var(--c-tip)',
