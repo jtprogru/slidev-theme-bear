@@ -11,6 +11,16 @@
     "sre",
     "engineering"
   ],
+  "files": [
+    "components",
+    "example.md",
+    "global-top.vue",
+    "layoutHelper.ts",
+    "layouts",
+    "setup",
+    "styles",
+    "uno.config.ts"
+  ],
   "engines": {
     "node": ">=18.0.0",
     "slidev": ">=0.47.0"

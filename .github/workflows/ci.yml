@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Contrast (WCAG AA)
+        run: npm run contrast
+
+      - name: Build example.md
+        run: npm run build
+
+      # export прогоняет каждый слайд через headless-chromium — проверяет,
+      # что все layouts реально рендерятся, а не только собирается Vite-бандл
+      - name: Install Chromium for export
+        run: npx playwright install --with-deps chromium
+
+      - name: Export example.md (render smoke)
+        run: npm run export
