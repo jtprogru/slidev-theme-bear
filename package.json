@@ -17,6 +17,7 @@
   },
   "scripts": {
     "build": "slidev build example.md",
+    "contrast": "node scripts/check-contrast.mjs",
     "dev": "slidev example.md --open",
     "export": "slidev export example.md",
     "lint": "eslint .",
