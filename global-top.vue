@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, inject } from 'vue'
 import { injectionSlidevContext } from '@slidev/client/constants.ts'
+import { computed, inject } from 'vue'
 
 // Футер на каждом слайде (BRANDING §6): знак (не маскот) слева, название
 // доклада, номер слайда справа. Приглушён и pointer-events-none, чтобы не
@@ -14,9 +14,19 @@ import { injectionSlidevContext } from '@slidev/client/constants.ts'
 const slidev = inject(injectionSlidevContext)
 
 const hiddenOn = new Set([
-  'cover', 'intro', 'intro-image', 'intro-image-right',
-  'section', 'statement', 'fact', 'big-metric', 'quote',
-  'questions', 'outro', 'end', 'full',
+  'cover',
+  'intro',
+  'intro-image',
+  'intro-image-right',
+  'section',
+  'statement',
+  'fact',
+  'big-metric',
+  'quote',
+  'questions',
+  'outro',
+  'end',
+  'full',
 ])
 
 const hidden = computed(() => hiddenOn.has(slidev?.nav.currentLayout as string))
