@@ -17,6 +17,7 @@
     "global-top.vue",
     "layoutHelper.ts",
     "layouts",
+    "public",
     "setup",
     "styles",
     "uno.config.ts"
