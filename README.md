@@ -6,7 +6,7 @@
 
 Тема **«Мишка на сервере»** для [Slidev](https://github.com/slidevjs/slidev): технический скелет + тёплая подача. Холодная приглушённая палитра catppuccin (Latte/Macchiato), один акцент Sapphire, catppuccin-подсветка кода, PT Sans + JetBrains Mono (self-hosted, кириллица), доступность ≥ AA. Теплота бренда живёт в маскоте и голосе, а не в цвете. Перенос [дизайн-кода блога jtprog.ru](https://jtprog.ru) в формат слайдов.
 
-| Свет | Тьма |
+| Светлая тема | Тёмная тема |
 | --- | --- |
 | ![Обложка, светлая тема](docs/preview/cover-light.png) | ![Обложка, тёмная тема](docs/preview/cover-dark.png) |
 | ![Слайд с кодом, светлая тема](docs/preview/code-light.png) | ![Слайд с кодом, тёмная тема](docs/preview/code-dark.png) |
