@@ -1,0 +1,62 @@
+# Лицензии slidev-theme-bear
+
+Copyright © 2026 Михаил Савин (Mikhail Savin), https://jtprog.ru
+
+    Required Notice: Copyright © 2026 Михаил Савин (https://jtprog.ru)
+
+Единой лицензии на весь репозиторий нет: код темы можно брать под ограничениями, бренд нельзя брать вообще. Условия совпадают с [дизайн-системой mishka-ds](https://github.com/jtprogru/mishka-ds/blob/main/LICENSE), откуда тема получает айдентику. Если файл не попадает ни в один раздел ниже — считается, что он под разделом 1.
+
+## 1. Код темы — PolyForm Noncommercial 1.0.0
+
+Полный текст: [`LICENSES/PolyForm-Noncommercial-1.0.0.md`](LICENSES/PolyForm-Noncommercial-1.0.0.md), он же на https://polyformproject.org/licenses/noncommercial/1.0.0
+
+Покрывает: `layouts/`, `components/` (кроме перечисленного в разделе 2), `styles/`, `setup/`, `scripts/`, `.github/`, `global-top.vue`, `layoutHelper.ts`, `uno.config.ts`, `eslint.config.js`, `example.md`, `package.json` и всё, что из них собирается.
+
+Коротко, без замены текста лицензии: этим можно пользоваться, менять и распространять для любой некоммерческой цели — личные проекты, учёба, исследования, некоммерческие организации, госучреждения. Доклад на внутреннем митапе или на конференции без оплаты за выступление — некоммерческое использование. Слайды, сделанные в рамках оплачиваемой работы, продукта или продажи — коммерческое, и требует отдельной письменной лицензии от автора. Гарантий никаких.
+
+При распространении копии или производной работы вы обязаны передать дальше и текст лицензии, и строку `Required Notice` выше.
+
+## 2. Бренд — все права защищены
+
+К этому разделу относятся:
+
+- всё в `public/brand/` — `mark.svg`, `logo.svg`, `mascot.svg`, `favicon-light.svg`, `favicon-dark.svg`;
+- `components/brandAssets.ts` — те же знак и логотип строками для инлайна, а также компоненты `components/BearMark.vue`, `components/BearLogo.vue`, `components/Mascot.vue` в части, которая эти материалы отрисовывает;
+- названия и адреса идентичности: «Мишка на сервере», «mishka», «mishka-ds», `jtprog.ru`, `savinmi.ru`, `@jtprogru`.
+
+Никакой лицензии на эти материалы не выдаётся. Их нельзя копировать, изменять, перерисовывать, встраивать в свои сайты, темы, презентации, печать или другие продукты, коммерческие и некоммерческие, без предварительного письменного разрешения автора. Разрешение на код по разделу 1 прав на бренд не даёт.
+
+Что можно без разрешения: смотреть, цитировать в обзоре или разборе с указанием авторства, форкнуть репозиторий ради работы с кодом — при условии, что в форке материалы этого раздела заменены на свои. Как это сделать технически — раздел «Свой бренд» в [README](README.md#свой-бренд). Медведь остаётся моим.
+
+Пользоваться темой как темой раздел 2 не запрещает: показывать свои слайды на `slidev-theme-bear` со знаком и маскотом автора можно в пределах раздела 1. Нельзя вынимать эти материалы из темы и использовать отдельно или в своём форке.
+
+## 3. Документация — CC BY-NC-SA 4.0
+
+Покрывает: `README.md`, `public/brand/SOURCE.md`.
+
+Условия: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru — с указанием авторства, некоммерчески, производные на тех же условиях.
+
+## 4. Чужие материалы — по своим лицензиям
+
+В репозитории их нет, они приезжают зависимостями и на них разделы 1–3 не распространяются:
+
+- **PT Sans** и **JetBrains Mono** — пакеты `@fontsource/pt-sans` и `@fontsource/jetbrains-mono`, SIL Open Font License 1.1, права у их авторов;
+- **catppuccin-latte / catppuccin-macchiato** — тексмейт-темы подсветки из пакета `tm-themes`, лицензии смотри в нём;
+- **иконки Carbon** — `@iconify-json/carbon`, Apache-2.0, © IBM Corp.
+
+## Как получить разрешение
+
+Коммерческая лицензия на код или разрешение на бренд — письмом на jtprogru@gmail.com или в https://t.me/jtprogru. Спрашивать нормально, ответ бывает «да».
+
+---
+
+## English summary
+
+This repository is **not** under a single license.
+
+- **Theme code** — [PolyForm Noncommercial 1.0.0](LICENSES/PolyForm-Noncommercial-1.0.0.md). Free for any noncommercial purpose; commercial use requires a separate written license.
+- **Brand** — all rights reserved. The bear mark, logo, mascot, favicons (`public/brand/`, `components/brandAssets.ts`) and the names «Мишка на сервере» / mishka may not be copied, modified or reused without prior written permission. Fork the theme, replace the mark.
+- **Documentation** — CC BY-NC-SA 4.0.
+- **Third-party** fonts, syntax themes and icons come from npm dependencies under their own licenses (OFL 1.1, Apache-2.0).
+
+Contact: jtprogru@gmail.com
