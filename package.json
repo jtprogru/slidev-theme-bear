@@ -2,7 +2,18 @@
   "name": "slidev-theme-bear",
   "type": "module",
   "version": "0.1.3",
+  "private": true,
   "description": "«Мишка на сервере» — инженерная тема для Slidev: холодная приглушённая палитра catppuccin, один акцент Sapphire, catppuccin-код, PT Sans + JetBrains Mono, доступность ≥ AA",
+  "author": "Mikhail Savin <jtprogru@gmail.com> (https://jtprog.ru)",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://github.com/jtprogru/slidev-theme-bear#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jtprogru/slidev-theme-bear.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jtprogru/slidev-theme-bear/issues"
+  },
   "keywords": [
     "slidev-theme",
     "slidev",
