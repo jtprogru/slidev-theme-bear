@@ -27,10 +27,12 @@
     "slidev": ">=52.0.0"
   },
   "scripts": {
+    "brand:sync": "node scripts/sync-brand.mjs",
     "build": "slidev build example.md",
     "contrast": "node scripts/check-contrast.mjs",
     "dev": "slidev example.md --open",
     "export": "slidev export example.md",
+    "prepare": "node scripts/sync-brand.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "screenshot": "slidev export example.md --format png"
@@ -44,6 +46,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.2.0",
+    "@jtprogru/mishka-ds": "github:jtprogru/mishka-ds",
     "@slidev/cli": "^52.19.0",
     "eslint": "^10.8.0",
     "playwright-chromium": "^1.62.1"

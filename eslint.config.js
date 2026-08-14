@@ -8,5 +8,6 @@ export default antfu({
   ignores: [
     'dist',
     '**/*.md', // презентация example.md — не линтуем как код
+    'components/brandAssets.ts', // генерится scripts/sync-brand.mjs
   ],
 })
