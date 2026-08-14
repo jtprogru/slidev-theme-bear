@@ -4,6 +4,7 @@ title: Мишка на сервере — тема Slidev
 info: |
   Демо-дек темы «Мишка на сервере».
   Технический скелет + тёплая подача.
+favicon: /brand/favicon-light.svg
 class: text-center
 transition: slide-left
 mdc: true
@@ -200,6 +201,7 @@ imageBottomRight: https://picsum.photos/seed/bear-c/1200/700
 
 ---
 layout: outro
+logo: true
 ---
 
 # Итоги
