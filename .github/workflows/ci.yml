@@ -24,6 +24,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # npm ci прогоняет prepare → scripts/sync-brand.mjs, который
+      # перезаписывает public/brand/ и components/brandAssets.ts из
+      # @jtprogru/mishka-ds. Если после этого дерево грязное — закоммиченная
+      # айдентика отстала от дизайн-системы. Чинится `npm run brand:sync`.
+      - name: Brand assets in sync with mishka-ds
+        run: git diff --exit-code -- public/brand components/brandAssets.ts
+
       - name: Lint
         run: npm run lint
 
