@@ -12,7 +12,7 @@
 | ![Слайд с кодом, светлая тема](docs/preview/code-light.png) | ![Слайд с кодом, тёмная тема](docs/preview/code-dark.png) |
 | ![Callouts, светлая тема](docs/preview/callouts-light.png) | ![Callouts, тёмная тема](docs/preview/callouts-dark.png) |
 
-Обе темы — не два разных дека, а одни и те же токены с двумя значениями. Слайды выше сняты с одного `example.md` командами `npm run screenshot` и `npx slidev export example.md --format png --dark`.
+Обе темы — не два разных дека, а одни и те же токены с двумя значениями. Слайды выше сняты с одного `example.md` и пересобираются командой `make preview`.
 
 ## Требования
 
@@ -136,6 +136,8 @@ Self-hosted (офлайн-показ, OFL, кириллица): **PT Sans** (т�
 | `npm run contrast` | проверка контраста WCAG AA |
 
 CI гоняет всё это на Node 22, 24 и 26, плюс прогоняет `slidev export` через headless-chromium — так проверяется, что каждый лейаут реально рендерится, а не только собирается Vite-бандл.
+
+Для локальной работы те же команды обёрнуты в `Makefile`, список — `make help`. Цели сами ставят зависимости, когда `package.json` или лок новее `node_modules`, и сами докачивают chromium перед экспортом. Сверх npm-скриптов там есть `make ci` (все шаги CI одной командой, включая сверку айдентики с mishka-ds), `make check` (lint и контраст перед коммитом) и `make preview` (пересобрать картинки превью в `docs/preview`).
 
 Коммиты — [Conventional Commits](https://www.conventionalcommits.org/), версии — semver. Тег релиза ставится тем же коммитом, что и бамп `version` в `package.json`, и должен быть достижим из `main`: CI проверяет оба условия.
 
