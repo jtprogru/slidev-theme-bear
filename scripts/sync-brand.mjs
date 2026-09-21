@@ -31,7 +31,13 @@ const COPY = [
 // лежат в DOM. Внутри <img> currentColor резолвится в чёрный, и на тёмной теме
 // медведь исчезает. Поэтому для них дополнительно генерится модуль со строками:
 // компоненты вставляют их инлайном через v-html.
-const INLINE = ['mark.svg', 'logo.svg']
+//
+// Маскот туда же, по двум причинам. Его два тона зашиты литералами светлой темы,
+// и в <img> он остаётся светлым на Macchiato: бумага белая, чернила тёмные. И
+// public/ темы не доезжает до сборки колоды: Slidev копирует его глобом
+// `public/*` только с файлами верхнего уровня, а у нас там один каталог brand/.
+// Инлайн снимает обе проблемы — URL нет, литералы заменены токенами (tintMascot).
+const INLINE = ['mark.svg', 'logo.svg', 'mascot.svg']
 
 // XML запрещает `--` внутри комментария. mishka-ds этого не соблюдает: в шапке
 // mascot.svg генератор пишет имена токенов (`--c-warn-text`, `--bg`), и файл
@@ -49,6 +55,39 @@ function repairXmlComments(svg) {
     return `<!--${body.replace(/-{2,}/g, '-')}-->`
   })
   return { out, repaired }
+}
+
+// Литералы маскота — светлые c-warn-text и bg дизайн-системы: ровно их
+// gen-mark-geometry.mjs и вписывает в mascot.svg (BRAND.md §3). Берём из того же
+// tokens.json, а не из vars.css темы, чтобы не разойтись, если тема отстанет.
+function mascotTones(brandDir) {
+  const tokens = JSON.parse(readFileSync(resolve(brandDir, '../tokens/tokens.json'), 'utf8'))
+  return { ink: tokens.color.light['c-warn-text'], paper: tokens.color.light.bg }
+}
+
+// Литерал → переменная темы (styles/vars.css) с тем же литералом в фоллбэке.
+// Через style, а не fill="var(…)": var() в презентационном атрибуте SVG не
+// работает, а у части контуров и fill, и stroke — их надо слить в один style.
+function tintMascot(svg, { ink, paper }) {
+  const tone = {
+    [ink.toLowerCase()]: `var(--mascot-ink, ${ink})`,
+    [paper.toLowerCase()]: `var(--mascot-paper, ${paper})`,
+  }
+  const out = svg.replace(/<path\b[^>]*>/g, (tag) => {
+    const decl = []
+    const rest = tag.replace(/\s(fill|stroke)="(#[0-9a-f]{3,8})"/gi, (whole, prop, hex) => {
+      const value = tone[hex.toLowerCase()]
+      if (!value)
+        return whole
+      decl.push(`${prop}:${value}`)
+      return ''
+    })
+    return decl.length ? rest.replace(/\s*(\/?)>$/, ` style="${decl.join(';')}"$1>`) : tag
+  })
+  const left = [ink, paper].filter(hex => out.toLowerCase().includes(`"${hex.toLowerCase()}"`))
+  if (left.length)
+    throw new Error(`[brand] в mascot.svg остались литералы ${left.join(', ')} — mishka-ds сменил разметку, поправь tintMascot`)
+  return out
 }
 
 function findSource() {
@@ -105,12 +144,14 @@ for (const name of COPY) {
 }
 
 const ident = name => name.replace(/\.svg$/, '').replace(/-(\w)/g, (_, c) => c.toUpperCase())
+const inline = name => name === 'mascot.svg' ? tintMascot(raw.get(name), mascotTones(src)) : raw.get(name)
 
 const module = `// СГЕНЕРИРОВАНО scripts/sync-brand.mjs из ${version} — не править руками.
 // Знак и логотип нужны инлайном в DOM: их заливка — currentColor, внутри <img>
-// она не работает. Файловые копии тех же ассетов лежат в public/brand/.
+// она не работает. Маскот — тоже инлайном, его тона заменены на --mascot-ink и
+// --mascot-paper. Файловые копии тех же ассетов лежат в public/brand/.
 ${INLINE.map(name => `
-export const ${ident(name)}Svg = ${JSON.stringify(raw.get(name))}
+export const ${ident(name)}Svg = ${JSON.stringify(inline(name))}
 `).join('')}`
 
 writeFileSync(join(root, 'components/brandAssets.ts'), module)

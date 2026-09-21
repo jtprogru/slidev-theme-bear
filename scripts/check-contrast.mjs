@@ -3,8 +3,9 @@
  * Проверка контрастности бренд-токенов ≥ WCAG AA (BRANDING §8).
  *
  * Читает реальные значения из styles/vars.css (:root — light, html.dark — dark),
- * резолвит var(...)-ссылки и считает WCAG contrast ratio для каждой текстовой
- * пары «цвет текста / фон». Падает с кодом 1, если хоть одна пара ниже порога.
+ * резолвит var(...)-ссылки и считает WCAG contrast ratio для каждой пары
+ * «цвет / фон»: текст — 4.5:1 (1.4.3), графика вроде маскота —
+ * 3:1 (1.4.11). Падает с кодом 1, если хоть одна пара ниже своего порога.
  *
  * Зависимостей нет намеренно: формула WCAG детерминирована, а лишний npm-пакет
  * в CI маленькой темы не нужен. Значения совпадают с WebAIM Contrast Checker
@@ -18,6 +19,7 @@ import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 
 const AA_NORMAL = 4.5 // обычный текст (крупный/жирный порог — 3.0, здесь не нужен)
+const AA_GRAPHIC = 3 // нетекстовая графика, WCAG 1.4.11
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 // Комментарии вырезаются до разбора: пример вида `--x: var(--y)` в тексте
@@ -91,16 +93,20 @@ const darkPairs = [
   ['--accent-300', '--bg', 'ссылка / фон страницы'],
   ['--accent-300', '--bg-elev', 'ссылка / карточка'],
 ]
+// Графика: порог 3:1.
+const graphicPairs = [
+  ['--mascot-ink', '--mascot-paper', 'маскот: чернила / бумага', AA_GRAPHIC],
+]
 
 const themes = [
-  { name: 'light (Latte)', vars: rootVars, pairs: [...commonPairs, ...lightPairs] },
-  { name: 'dark (Macchiato)', vars: darkVars, pairs: [...commonPairs, ...darkPairs] },
+  { name: 'light (Latte)', vars: rootVars, pairs: [...commonPairs, ...lightPairs, ...graphicPairs] },
+  { name: 'dark (Macchiato)', vars: darkVars, pairs: [...commonPairs, ...darkPairs, ...graphicPairs] },
 ]
 
 let failed = 0
 for (const theme of themes) {
   console.log(`\n=== ${theme.name} ===`)
-  for (const [fgTok, bgTok, label] of theme.pairs) {
+  for (const [fgTok, bgTok, label, min = AA_NORMAL] of theme.pairs) {
     const fg = resolveColor(theme.vars[fgTok], theme.vars)
     const bg = resolveColor(theme.vars[bgTok], theme.vars)
     if (!/^#[0-9a-f]{3,6}$/i.test(fg) || !/^#[0-9a-f]{3,6}$/i.test(bg)) {
@@ -109,18 +115,18 @@ for (const theme of themes) {
       continue
     }
     const ratio = contrast(fg, bg)
-    const ok = ratio >= AA_NORMAL
+    const ok = ratio >= min
     if (!ok)
       failed++
     console.log(
       `  ${ok ? '✓' : '✗'} ${label.padEnd(34)} ${fg} on ${bg}  ${ratio.toFixed(2)}:1`
-      + `${ok ? '' : `  < ${AA_NORMAL} AA`}`,
+      + `${ok ? '' : `  < ${min} AA`}`,
     )
   }
 }
 
 if (failed) {
-  console.error(`\n✗ ${failed} пар(а) ниже WCAG AA (${AA_NORMAL}:1). Правь styles/vars.css.`)
+  console.error(`\n✗ ${failed} пар(а) ниже WCAG AA. Правь styles/vars.css.`)
   process.exit(1)
 }
-console.log(`\n✓ Все текстовые пары ≥ WCAG AA (${AA_NORMAL}:1).`)
+console.log(`\n✓ Все пары ≥ WCAG AA: текст ${AA_NORMAL}:1, графика ${AA_GRAPHIC}:1.`)
