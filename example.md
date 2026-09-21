@@ -37,9 +37,13 @@ layout: section
 mascot: true
 ---
 
+<SectionNum>01</SectionNum>
+
 # Раздел: с чего начать
 
 ---
+
+<Kicker>01 · основы</Kicker>
 
 # Список тезисов
 
@@ -161,6 +165,45 @@ Full-bleed с затемнением (`dim: true`) для читаемости �
 | <kbd>space</kbd> / <kbd>→</kbd> | следующий шаг или слайд |
 | <kbd>←</kbd> | назад |
 | <kbd>f</kbd> | полноэкранный режим |
+
+---
+
+<Kicker>02 · компоненты</Kicker>
+
+# Карточки
+
+Подложка и рамка — как у блока кода: карточки и код читаются одной системой.
+
+<div class="grid grid-cols-3 gap-4 mt-6">
+<Card kicker="default" title="Контекст">Нейтральная карточка в сетке: факт, условие, вводная.</Card>
+<Card kicker="accent" title="Вывод" tone="accent">Главное на слайде. Рамка и заголовок в Sapphire.</Card>
+<Card kicker="danger" title="Так нельзя" tone="danger">Выдать агенту ключ на запись в боевую базу.</Card>
+</div>
+
+<Card class="mt-4" :to="1">
+
+Карточка с `:to` — ссылка на слайд: номер или `routeAlias`. Эта ведёт на обложку.
+
+</Card>
+
+---
+
+<Kicker>02 · компоненты</Kicker>
+
+# График из данных
+
+Один ряд, подписи слева, значение у конца столбца. `highlight` — столбец, о котором говорит слайд.
+
+<BarChart
+  class="mt-8"
+  unit=" мин"
+  :items="[
+    { label: 'Обнаружение', value: 42, highlight: true },
+    { label: 'Диагноз', value: 23 },
+    { label: 'Починка', value: 25 },
+    { label: 'Проверка', value: 9 },
+  ]"
+/>
 
 ---
 layout: fact
