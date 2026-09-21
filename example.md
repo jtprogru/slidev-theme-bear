@@ -206,6 +206,49 @@ Full-bleed с затемнением (`dim: true`) для читаемости �
 />
 
 ---
+flow:
+  nodes:
+    - - { label: Prometheus, tag: read }
+      - { label: Loki, tag: read }
+      - { label: Git, tag: read, to: 6 }
+    - label: ИИ-ассистент
+      note: MCP client · dry-run
+      tone: accent
+    - label: Инженер
+      note: apply · только человек
+  edges:
+    - null
+    - { label: propose, dashed: true, tone: muted }
+---
+
+<Kicker>02 · компоненты</Kicker>
+
+# Схема из frontmatter
+
+Данные схемы лежат в YAML этого слайда, `<Flow v-bind="$frontmatter.flow" />` их рисует. Стопка сходится шиной, пунктир — предложение, а не действие.
+
+<Flow class="mt-10" v-bind="$frontmatter.flow" />
+
+---
+
+<Kicker>02 · компоненты</Kicker>
+
+# Схема в строку
+
+Короткую схему проще написать прямо в пропсах. Одиночный узел — карточка, массив — стопка плашек.
+
+<Flow
+  class="mt-10"
+  :nodes="[
+    'git push',
+    { label: 'CI', note: 'lint · test · build' },
+    ['staging', 'canary 5%'],
+    { label: 'prod', tone: 'accent' },
+  ]"
+  :edges="[null, 'deploy', { label: 'promote', dashed: true }]"
+/>
+
+---
 layout: fact
 ---
 
