@@ -20,7 +20,9 @@ import { fileURLToPath } from 'node:url'
 const AA_NORMAL = 4.5 // обычный текст (крупный/жирный порог — 3.0, здесь не нужен)
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const css = readFileSync(resolve(root, 'styles/vars.css'), 'utf8')
+// Комментарии вырезаются до разбора: пример вида `--x: var(--y)` в тексте
+// комментария иначе проглотил бы настоящее объявление следом за ним.
+const css = readFileSync(resolve(root, 'styles/vars.css'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')
 
 /** Вытащить объявления `--token: value;` из указанного CSS-блока по селектору. */
 function parseBlock(selector) {
