@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useNav } from '@slidev/client'
 import { injectionSlidevContext } from '@slidev/client/constants.ts'
 import { computed, inject } from 'vue'
 
@@ -31,6 +32,13 @@ const hiddenOn = new Set([
 
 const hidden = computed(() => hiddenOn.has(slidev?.nav.currentLayout as string))
 const title = computed(() => (slidev?.configs as any)?.title ?? '')
+
+// При экспорте с `--with-clicks` каждый клик уезжает на отдельную страницу, а
+// номер считает слайды: один и тот же «3 / 37» повторялся бы на всех страницах
+// слайда. В таком экспорте номер прячем, в обычном PDF он остаётся.
+// Флаг берём из `useNav()`: у print-слайда свой урезанный `nav`, и
+// `isPrintWithClicks` в `$slidev.nav` там нет.
+const { isPrintWithClicks } = useNav()
 </script>
 
 <template>
@@ -42,6 +50,6 @@ const title = computed(() => (slidev?.configs as any)?.title ?? '')
   >
     <BearMark :size="18" class="opacity-90" />
     <span v-if="title" class="truncate">{{ title }}</span>
-    <span class="ml-auto tabular-nums">{{ $slidev?.nav.currentPage }} / {{ $slidev?.nav.total }}</span>
+    <span v-if="!isPrintWithClicks" class="ml-auto tabular-nums">{{ $slidev?.nav.currentPage }} / {{ $slidev?.nav.total }}</span>
   </footer>
 </template>
